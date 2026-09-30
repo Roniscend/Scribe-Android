@@ -407,8 +407,15 @@ abstract class GeneralKeyboardIME(
                         outInsets.touchableRegion.setEmpty()
                     }
                 } else {
-                    outInsets.visibleTopInsets = location[1]
-                    outInsets.contentTopInsets = location[1]
+                    val windowDecorHeight = getWindow()?.window?.decorView?.height ?: 0
+                    val keyboardTop =
+                        if (windowDecorHeight > 0 && inputView.height < windowDecorHeight) {
+                            windowDecorHeight - inputView.height
+                        } else {
+                            location[1]
+                        }
+                    outInsets.visibleTopInsets = keyboardTop
+                    outInsets.contentTopInsets = keyboardTop
                     outInsets.touchableInsets = Insets.TOUCHABLE_INSETS_VISIBLE
                 }
             }

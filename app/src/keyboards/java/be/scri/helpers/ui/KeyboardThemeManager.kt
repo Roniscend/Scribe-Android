@@ -95,6 +95,7 @@ class KeyboardThemeManager {
                     uiManager.binding.floatingDragBar.setBackgroundColor(kbBgColor)
                     val pillColor = if (isDarkMode) 0x4DFFFFFF.toInt() else 0x40000000.toInt()
                     uiManager.binding.floatingDragHandle.setColorFilter(pillColor)
+                    uiManager.binding.root.setPadding(0, 0, 0, 0)
                 } else {
                     uiManager.binding.root.setBackgroundColor(color)
                 }
@@ -109,6 +110,7 @@ class KeyboardThemeManager {
 
                 uiManager.binding.root.post {
                     ViewCompat.requestApplyInsets(uiManager.binding.root)
+                    ViewCompat.requestApplyInsets(targetWindow.decorView)
                 }
             }
         }
